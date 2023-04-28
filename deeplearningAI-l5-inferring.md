@@ -43,7 +43,11 @@ Review text: '''{lamp_review}'''
 """
 response = get_completion(prompt)
 print(response)
+```
 
+If we want a single word:
+
+```python
 prompt = f"""
 What is the sentiment of the following product review, 
 which is delimited with triple backticks?
@@ -136,6 +140,17 @@ response = get_completion(prompt)
 print(response)
 ```
 
+Output!
+
+```shell
+{
+  "Sentiment": "positive",
+  "Anger": false,
+  "Item": "lamp with additional storage",
+  "Brand": "Lumina"
+}
+```
+
 ## Inferring topics
 
 ```python
@@ -208,7 +223,19 @@ Text sample: '''{story}'''
 """
 response = get_completion(prompt)
 print(response)
+```
 
+Output
+
+```shell
+nasa: 1
+local government: 0
+engineering: 0
+employee satisfaction: 1
+federal government: 1
+```
+
+```python
 topic_dict = {i.split(': ')[0]: int(i.split(': ')[1]) for i in response.split(sep='\n')}
 if topic_dict['nasa'] == 1:
     print("ALERT: New NASA story!")
